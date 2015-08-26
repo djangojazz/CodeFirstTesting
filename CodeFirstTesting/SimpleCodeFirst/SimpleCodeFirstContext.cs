@@ -13,7 +13,7 @@ namespace SimpleCodeFirst
         {
         }
 
-        public DbSet<Office> Office { get; set; }
+        public DbSet<ProductOrder> Office { get; set; }
         public DbSet<Person> Person { get; set; }
         public DbSet<Product> Product { get; set; }
     }
