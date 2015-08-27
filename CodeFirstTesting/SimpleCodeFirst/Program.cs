@@ -60,7 +60,7 @@ namespace SimpleCodeFirst
 
             using (var context = new SimpleCodeFirstContext())
             {
-                Person person = new Person {FirstName = "Brett", LastName = "Morin"};
+                Person person = new Person {FirstName = "Brett", LastName = "Morin" };
                 
                 context.Person.Add(person);
                 context.SaveChanges();
