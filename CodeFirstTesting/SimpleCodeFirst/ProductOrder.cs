@@ -9,15 +9,11 @@ using System.Threading.Tasks;
 
 namespace SimpleCodeFirst
 {
-    [Table("ProductOrder")]
     public class ProductOrder
     {
-        [Key]
         public int ProductOrderId { get; set; }
-        public int FK_Person_ProductOrderId { get; set; }
-        [ForeignKey("Hello")]
         public Person Person { get; set; }
-        
+        [ForeignKey("Hello")]
         public List<Product> Products { get; set; }
         [Column(TypeName = "varchar")]
         [Required]

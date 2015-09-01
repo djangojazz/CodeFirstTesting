@@ -8,10 +8,8 @@ using System.Threading.Tasks;
 
 namespace SimpleCodeFirst
 {
-    [Table("Person")]
     public class Person
     {
-        [Key]
         public int PersonId { get; set; }
         [Column(TypeName = "varchar")]
         [Required]
@@ -21,5 +19,8 @@ namespace SimpleCodeFirst
         [Required]
         [MaxLength(32)]
         public string LastName { get; set; }
+
+        [Column(TypeName = "varchar")]
+        public string OverlyLongDescriptionField { get; set; }
     }
 }

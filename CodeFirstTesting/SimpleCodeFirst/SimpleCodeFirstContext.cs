@@ -10,17 +10,34 @@ namespace SimpleCodeFirst
 {
     public class SimpleCodeFirstContext : DbContext
     {
-        public SimpleCodeFirstContext() : base("name=SimpleCodeFirst")
+        public SimpleCodeFirstContext() : base("name=Simple")
         {
         }
         
-        public DbSet<ProductOrder> Office { get; set; }
+        public DbSet<ProductOrder> ProductOrder { get; set; }
         public DbSet<Person> Person { get; set; }
         public DbSet<Product> Product { get; set; }
+        public DbSet<BackupPerson> BackupPerson { get; set; }
         
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.HasDefaultSchema("dbo");
+
+            modelBuilder.Entity<Person>()
+                .Map(m =>
+                {
+                    m.Properties(p => new {p.FirstName, p.LastName});
+                    m.ToTable("Person");
+                })
+                .Map(m =>
+                {
+                    m.Properties(p => new {p.OverlyLongDescriptionField});
+                    m.ToTable("PersonDescription");
+                });
+
+            modelBuilder.Entity<ProductOrder>().ToTable("ProductOrder");
+            modelBuilder.Entity<Product>().ToTable("Product");
+            modelBuilder.Entity<BackupPerson>().ToTable("BackupPerson", "Audit");
         }
     }
 }

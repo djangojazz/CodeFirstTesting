@@ -8,12 +8,18 @@ using System.Threading.Tasks;
 
 namespace SimpleCodeFirst
 {
-    public class Product
+    public class BackupPerson
     {
-        public int ProductId { get; set; }
+        [Key]
+        public int AuditId { get; set; }
+        public int PersonId { get; set; }
         [Column(TypeName = "varchar")]
         [Required]
         [MaxLength(32)]
-        public string ProductName { get; set; }
+        public string FirstName { get; set; }
+        [Column(TypeName = "varchar")]
+        [Required]
+        [MaxLength(32)]
+        public string LastName { get; set; }
     }
 }
