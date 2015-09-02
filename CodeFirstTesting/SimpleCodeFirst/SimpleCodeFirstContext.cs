@@ -8,12 +8,16 @@ using System.Threading.Tasks;
 
 namespace SimpleCodeFirst
 {
-    public class SimpleCodeFirstContext : DbContext
+    public class SimpleContext : DbContext
     {
-        public SimpleCodeFirstContext() : base("name=Simple")
+        public SimpleContext() : base("name=Simple")
         {
+            //Database.SetInitializer<SimpleContext>(new CreateDatabaseIfNotExists<SimpleContext>());
+            //Database.SetInitializer<SimpleContext>(new DropCreateDatabaseIfModelChanges<SimpleContext>());
+            //Database.SetInitializer<SimpleContext>(new DropCreateDatabaseAlways<SimpleContext>());
+            //Database.SetInitializer<SimpleContext>(new SimpleDBInitializer());
         }
-        
+
         public DbSet<ProductOrder> ProductOrder { get; set; }
         public DbSet<Person> Person { get; set; }
         public DbSet<Product> Product { get; set; }

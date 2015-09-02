@@ -58,6 +58,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimpleCodeFirstContext.cs" />
+    <Compile Include="SimpleDbInitializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

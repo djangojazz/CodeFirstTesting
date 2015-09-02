@@ -60,18 +60,24 @@ namespace SimpleCodeFirst
                 left JOIN dbo.Product po ON po.OrderId = o.OrderId
             */
 
-            using (var context = new SimpleCodeFirstContext())
+            using (var context = new SimpleContext())
             {
-                //Person person = context.Person.FirstOrDefault();
+                Person newperson = new Person { FirstName = "Test", LastName = "Test", OverlyLongDescriptionField = "OMG Look I have a bunch of text denormalizing a table by putting a bunch of stuff only side related to the primary table." };
 
-                //person.GetType().GetProperties().ToList().ForEach(p => Console.WriteLine(p.GetValue(person)));
-
-                //Console.ReadLine();
-
-                Person person = new Person { FirstName = "Brett", LastName = "Morin", OverlyLongDescriptionField = "OMG Look I have a bunch of text denormalizing a table by putting a bunch of stuff only side related to the primary table." };
-
-                context.Person.Add(person);
+                context.Person.Add(newperson);
                 context.SaveChanges();
+
+                var persons = context.Person.Select(x => new
+                {
+                    Name = x.FirstName + x.LastName,
+                    Logo = x.OverlyLongDescriptionField
+                }).ToList();
+
+                persons.ForEach(person => 
+                    person.GetType().GetProperties().ToList().ForEach(p => Console.WriteLine(p.GetValue(person)))
+                );
+                    
+                Console.ReadLine();
             }
         }
     }

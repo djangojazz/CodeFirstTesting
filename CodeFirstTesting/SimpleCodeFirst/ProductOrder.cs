@@ -13,7 +13,7 @@ namespace SimpleCodeFirst
     {
         public int ProductOrderId { get; set; }
         public Person Person { get; set; }
-        [ForeignKey("Hello")]
+        
         public List<Product> Products { get; set; }
         [Column(TypeName = "varchar")]
         [Required]
