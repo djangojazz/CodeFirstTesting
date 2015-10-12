@@ -15,24 +15,33 @@ Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+		Seed|Any CPU = Seed|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{7A506AB9-8536-4493-B18C-8D877E0BA785}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7A506AB9-8536-4493-B18C-8D877E0BA785}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A506AB9-8536-4493-B18C-8D877E0BA785}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A506AB9-8536-4493-B18C-8D877E0BA785}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A506AB9-8536-4493-B18C-8D877E0BA785}.Seed|Any CPU.ActiveCfg = Brett|Any CPU
+		{7A506AB9-8536-4493-B18C-8D877E0BA785}.Seed|Any CPU.Build.0 = Brett|Any CPU
 		{573C97B4-E290-488E-BD36-69B9FDD54E26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{573C97B4-E290-488E-BD36-69B9FDD54E26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{573C97B4-E290-488E-BD36-69B9FDD54E26}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{573C97B4-E290-488E-BD36-69B9FDD54E26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{573C97B4-E290-488E-BD36-69B9FDD54E26}.Seed|Any CPU.ActiveCfg = Debug|Any CPU
+		{573C97B4-E290-488E-BD36-69B9FDD54E26}.Seed|Any CPU.Build.0 = Debug|Any CPU
 		{B1D02DF4-60AF-4B76-B555-B5A81489619E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B1D02DF4-60AF-4B76-B555-B5A81489619E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1D02DF4-60AF-4B76-B555-B5A81489619E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1D02DF4-60AF-4B76-B555-B5A81489619E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1D02DF4-60AF-4B76-B555-B5A81489619E}.Seed|Any CPU.ActiveCfg = Brett|Any CPU
+		{B1D02DF4-60AF-4B76-B555-B5A81489619E}.Seed|Any CPU.Build.0 = Brett|Any CPU
 		{AC123D42-5A0E-42B1-A2FA-F6E7E10D7780}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AC123D42-5A0E-42B1-A2FA-F6E7E10D7780}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC123D42-5A0E-42B1-A2FA-F6E7E10D7780}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC123D42-5A0E-42B1-A2FA-F6E7E10D7780}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC123D42-5A0E-42B1-A2FA-F6E7E10D7780}.Seed|Any CPU.ActiveCfg = Brett|Any CPU
+		{AC123D42-5A0E-42B1-A2FA-F6E7E10D7780}.Seed|Any CPU.Build.0 = Brett|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
