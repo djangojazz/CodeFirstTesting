@@ -10,5 +10,6 @@ namespace EasyEntity
         [Required]
         [MaxLength(32)]
         public string ProductName { get; set; }
+        public int ProductOrderId { get; set; }
     }
 }

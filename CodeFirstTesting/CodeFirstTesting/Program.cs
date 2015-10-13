@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using EasyEntity;
@@ -61,20 +63,32 @@ namespace CodeFirstTesting
 
             using (var context = new EasyContext())
             {
-                
                 context.Person.Add(new Person {FirstName = "Brett", LastName = "Test"});
                 context.SaveChanges();
+                
+                var productOrders = context.ProductOrder.Include("Products").ToList();
+                var persons = context.Person.ToList();
 
-                var persons = context.Person.Select(x => new
-                {
-                    Name = x.FirstName + x.LastName,
-                    Logo = x.OverlyLongDescriptionField
-                }).ToList();
+                persons.GroupJoin(productOrders, 
+                    p => p.PersonId, 
+                    o => o.Person.PersonId,
+                    (p, g) => g
+                        .Select(o => new { PersonName = p.FirstName + " " + p.LastName, Orders = o})
+                        .DefaultIfEmpty(new { PersonName = p.FirstName + " " + p.LastName, Orders = new ProductOrder() })
+                        )
+                    .SelectMany(g => g)
+                    .ToList()
+                    .ForEach(item =>
+                    {
+                        Console.WriteLine(item.PersonName);
 
-                persons.ForEach(person =>
-                    person.GetType().GetProperties().ToList().ForEach(p => Console.WriteLine(p.GetValue(person)))
-                );
+                        if (!(item?.Orders?.Products?.Count > 0))
+                            return;
 
+                        Console.WriteLine($"\t {item.Orders.ProductOrderName}");
+                        item.Orders.Products.ForEach(x => Console.WriteLine($"\t\t {x.ProductName}"));
+                    });
+                
                 Console.ReadLine();
             }
         }

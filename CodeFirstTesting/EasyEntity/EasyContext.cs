@@ -27,23 +27,23 @@ namespace EasyEntity
             modelBuilder.HasDefaultSchema("dbo");
             
             modelBuilder.Entity<Person>()
-                .Map(m =>
-                {
-                    m.Properties(p => new {p.FirstName, p.LastName});
-                    m.ToTable("Person");
-                })
-                .Map(m =>
-                {
-                    m.Properties(p => new {p.OverlyLongDescriptionField});
-                    m.ToTable("PersonDescription");
-                });
+            .Map(m =>
+            {
+                m.Properties(p => new {p.FirstName, p.LastName});
+                m.ToTable("Person");
+            })
+            .Map(m =>
+            {
+                m.Properties(p => new {p.OverlyLongDescriptionField});
+                m.ToTable("PersonDescription");
+            });
 
             modelBuilder.Entity<Audit>()
-                .Map(m =>
-                {
-                    m.Properties(p => new {p.AuditId, p.xmlBlob});
-                    m.ToTable("AuditTable", "Audit");
-                });
+            .Map(m =>
+            {
+                m.Properties(p => new {p.AuditId, p.xmlBlob});
+                m.ToTable("AuditTable", "Audit");
+            });
         }
     }
 }
