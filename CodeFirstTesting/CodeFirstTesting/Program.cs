@@ -86,7 +86,7 @@ namespace CodeFirstTesting
                             return;
 
                         Console.WriteLine($"\t {item.Orders.ProductOrderName}");
-                        item.Orders.Products.ForEach(x => Console.WriteLine($"\t\t {x.ProductName}"));
+                        item.Orders.Products.ToList().ForEach(x => Console.WriteLine($"\t\t{x.ProductId} + {x.ProductName}"));
                     });
                 
                 Console.ReadLine();

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EasyEntity
@@ -10,6 +11,7 @@ namespace EasyEntity
         [Required]
         [MaxLength(32)]
         public string ProductName { get; set; }
-        public int ProductOrderId { get; set; }
+        
+        public virtual ICollection<ProductOrder> ProductOrders { get; set; }
     }
 }
