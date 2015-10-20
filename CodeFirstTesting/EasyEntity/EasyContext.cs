@@ -15,8 +15,10 @@ namespace EasyEntity
             //Database.SetInitializer<EasyContext>(new DropCreateDatabaseIfModelChanges<EasyContext>());
             //Database.SetInitializer<EasyContext>(new DropCreateDatabaseAlways<EasyContext>());
             //Database.SetInitializer<EasyContext>(new EasyInitializer());   
-        }
 
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<EasyContext, Migrations.Configuration>("EasyEntity"));
+        }
+        
         public DbSet<ProductOrder> ProductOrder { get; set; }
         public DbSet<Person> Person { get; set; }
         public DbSet<Product> Product { get; set; }
@@ -26,19 +28,20 @@ namespace EasyEntity
         {
             modelBuilder.HasDefaultSchema("dbo");
             
-            modelBuilder.Entity<Person>()
-            .Map(m =>
-            {
-                m.Properties(p => new {p.FirstName, p.LastName});
-                m.ToTable("Person");
-            })
-            .Map(m =>
-            {
-                m.Properties(p => new {p.OverlyLongDescriptionField});
-                m.ToTable("PersonDescription");
-            });
+            //TODO V3 Let's normalize out a long descriptive field
+            //modelBuilder.Entity<Person>()
+            //.Map(m =>
+            //{
+            //    m.Properties(p => new {p.FirstName, p.LastName});
+            //    m.ToTable("Person");
+            //})
+            //.Map(m =>
+            //{
+            //    m.Properties(p => new {p.OverlyLongDescriptionField});
+            //    m.ToTable("PersonDescription");
+            //});
 
-            //TODO normalize this out
+            //TODO V2 normalize this out
             //modelBuilder.Entity<ProductOrder>()
             //    .HasMany<Product>(p => p.Products)
             //    .WithMany(po => po.ProductOrders)

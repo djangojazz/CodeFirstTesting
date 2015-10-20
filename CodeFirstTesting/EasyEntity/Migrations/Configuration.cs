@@ -1,6 +1,7 @@
 namespace EasyEntity.Migrations
 {
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -11,6 +12,7 @@ namespace EasyEntity.Migrations
         {
             AutomaticMigrationsEnabled = true;
             ContextKey = "EasyEntity.EasyContext";
+            var drop = new DropCreateDatabaseAlways<EasyContext>();
         }
 
         protected override void Seed(EasyEntity.EasyContext context)
@@ -27,6 +29,11 @@ namespace EasyEntity.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            // Do I want this or not?
+            //context.Person.AddOrUpdate(new Person { PersonId = 5, FirstName = "Ken", LastName = "Guernsey" } );
+            
+            base.Seed(context);
         }
     }
 }

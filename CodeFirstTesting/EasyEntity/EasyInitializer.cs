@@ -31,14 +31,12 @@ namespace EasyEntity
                 new Product {ProductName = "Shoes" },
                 new Product {ProductName = "Bike" },
 
-                //TODO normalize this out
+                //TODO V2 normalize this out for many to many relationship
                 new Product {ProductName = "Shirt"},
                 new Product {ProductName = "Pants"},
                 new Product {ProductName = "Shoes" },
             };
-
             
-
             foreach (var product in products)
                 context.Product.Add(product);
 

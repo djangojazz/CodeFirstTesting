@@ -65,12 +65,9 @@ namespace CodeFirstTesting
             run "enable-migrations –EnableAutomaticMigration:$true" command 
             (make sure that the default project is the project where your context class is)
             */
-
+            
             using (var context = new EasyContext())
-            {
-                context.Person.Add(new Person {FirstName = "Brett", LastName = "Test"});
-                context.SaveChanges();
-                
+            {   
                 var productOrders = context.ProductOrder.Include("Products").ToList();
                 var persons = context.Person.ToList();
 

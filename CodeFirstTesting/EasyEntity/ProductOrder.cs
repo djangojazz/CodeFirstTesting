@@ -11,6 +11,7 @@ namespace EasyEntity
         [ForeignKey("PersonId")]
         public Person Person { get; set; }
         
+        //TODO V1 one to one
         [ForeignKey("ProductOrderId")]
         public ICollection<Product> Products { get; set; }
 
