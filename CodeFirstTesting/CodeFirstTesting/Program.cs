@@ -59,6 +59,11 @@ namespace CodeFirstTesting
             from dbo.Person p
                 left JOIN dbo.Order o ON o.PersonId = p.PersonId
                 left JOIN dbo.Product po ON po.OrderId = o.OrderId
+
+            TO ENABLE AUTOMATIC MIGRATION:
+            First, open the package manager console from Tools → Library Package Manager → Package Manager Console and then 
+            run "enable-migrations –EnableAutomaticMigration:$true" command 
+            (make sure that the default project is the project where your context class is)
             */
 
             using (var context = new EasyContext())
