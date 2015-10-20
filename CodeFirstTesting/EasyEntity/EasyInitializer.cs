@@ -28,32 +28,29 @@ namespace EasyEntity
             {
                 new Product {ProductName = "Shirt"},
                 new Product {ProductName = "Pants"},
-                new Product { ProductName = "Shoes" },
-                new Product { ProductName = "Bike" }
+                new Product {ProductName = "Shoes" },
+                new Product {ProductName = "Bike" },
+
+                //TODO normalize this out
+                new Product {ProductName = "Shirt"},
+                new Product {ProductName = "Pants"},
+                new Product {ProductName = "Shoes" },
             };
+
+            
 
             foreach (var product in products)
                 context.Product.Add(product);
 
-            //var shirt = new Product {ProductName = "Shirt"};
-            //var pants = new Product {ProductName = "Pants"};
-            //var shoes = new Product {ProductName = "Shoes"};
-            //var bike = new Product {ProductName = "Bike"};
-
-            //context.Product.Add(shirt);
-
             IList<ProductOrder> productOrders = new List<ProductOrder>
             {
                 new ProductOrder {PersonId = 1, ProductOrderName = "BrettOrders", Products = new List<Product> { products[0], products[1], products[2]} },
-                new ProductOrder { PersonId = 2, ProductOrderName = "NeilOrders", Products = new List<Product> { products[0], products[1], products[2], products[3] } }
+                new ProductOrder {PersonId = 2, ProductOrderName = "NeilOrders", Products = new List<Product> { products[3], products[4], products[5], products[6] } }
             };
 
             foreach (var productOrder in productOrders)
                 context.ProductOrder.Add(productOrder);
             
-            //context.ProductOrder.Add(brettOrders);
-            //context.ProductOrder.Add(neilOrders);
-
             base.Seed(context);
         }
     }

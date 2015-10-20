@@ -12,6 +12,8 @@ namespace EasyEntity
         [MaxLength(32)]
         public string ProductName { get; set; }
         
-        public virtual ICollection<ProductOrder> ProductOrders { get; set; }
+        public int ProductOrderId { get; set; }
+        //TODO normalize this out
+        //public virtual ICollection<ProductOrder> ProductOrders { get; set; }
     }
 }

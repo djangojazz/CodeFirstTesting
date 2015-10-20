@@ -38,15 +38,16 @@ namespace EasyEntity
                 m.ToTable("PersonDescription");
             });
 
-            modelBuilder.Entity<ProductOrder>()
-                .HasMany<Product>(p => p.Products)
-                .WithMany(po => po.ProductOrders)
-                .Map(pop =>
-                    {
-                        pop.MapLeftKey("ProductOrderId");
-                        pop.MapRightKey("ProductId");
-                        pop.ToTable("ProductOrder_Product_Mapping");
-                    });
+            //TODO normalize this out
+            //modelBuilder.Entity<ProductOrder>()
+            //    .HasMany<Product>(p => p.Products)
+            //    .WithMany(po => po.ProductOrders)
+            //    .Map(pop =>
+            //        {
+            //            pop.MapLeftKey("ProductOrderId");
+            //            pop.MapRightKey("ProductId");
+            //            pop.ToTable("ProductOrder_Product_Mapping");
+            //        });
 
             modelBuilder.Entity<Audit>()
             .Map(m =>
