@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 using EasyEntity;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Core.Metadata.Edm;
+using System.Reflection;
 
 namespace CodeFirstTesting
 {
@@ -67,30 +65,30 @@ namespace CodeFirstTesting
             */
             
             using (var context = new EasyContext())
-            {   
+            {
                 var productOrders = context.ProductOrder.Include("Products").ToList();
                 var persons = context.Person.ToList();
 
-                persons.GroupJoin(productOrders, 
-                    p => p.PersonId, 
+                persons.GroupJoin(productOrders,
+                    p => p.PersonId,
                     o => o.Person.PersonId,
                     (p, g) => g
-                        .Select(o => new { PersonName = p.FirstName + " " + p.LastName, Orders = o})
-                        .DefaultIfEmpty(new { PersonName = p.FirstName + " " + p.LastName, Orders = new ProductOrder() })
+                        .Select(o => new { PersonId = p.PersonId, PersonName = p.FirstName + " " + p.LastName, Orders = o })
+                        .DefaultIfEmpty(new { PersonId = p.PersonId, PersonName = p.FirstName + " " + p.LastName, Orders = new ProductOrder() })
                         )
                     .SelectMany(g => g)
                     .ToList()
                     .ForEach(item =>
                     {
-                        Console.WriteLine(item.PersonName);
+                        Console.WriteLine($"{item.PersonId}: {item.PersonName}");
 
                         if (!(item?.Orders?.Products?.Count > 0))
                             return;
 
-                        Console.WriteLine($"\t {item.Orders.ProductOrderName}");
-                        item.Orders.Products.ToList().ForEach(x => Console.WriteLine($"\t\t{x.ProductId} + {x.ProductName}"));
+                        Console.WriteLine($"\t {item.Orders.ProductOrderId}: {item.Orders.ProductOrderName}");
+                        item.Orders.Products.ToList().ForEach(x => Console.WriteLine($"\t\t{x.ProductId}: {x.ProductName}"));
                     });
-                
+
                 Console.ReadLine();
             }
         }
