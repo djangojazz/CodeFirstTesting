@@ -9,14 +9,12 @@ namespace EasyEntity
             return true;
         }
 
-        public static void ClearRange<T>(this DbSet<T> dbSet, string tableName, bool reseed = true) where T : class
+        public static void ClearRange<T>(this DbSet<T> dbSet, string tableName) where T : class
         {
             using (var context = new EasyContext())
             {
                 dbSet.RemoveRange(dbSet);
-                if(reseed)
-                    context.Database.ExecuteSqlCommand($"DBCC CHECKIDENT('dbo.{tableName}', RESEED, 0)");
-                context.SaveChanges();
+                context.Database.ExecuteSqlCommand($"DBCC CHECKIDENT('dbo.{tableName}', RESEED, 1)");
             }
         }
     }

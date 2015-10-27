@@ -31,7 +31,7 @@ namespace EasyEntity
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
 
-            //TODO V3 Let's normalize out a long descriptive field
+            //TODO V2 Let's normalize out a long descriptive field
             //modelBuilder.Entity<Person>()
             //.Map(m =>
             //{
@@ -43,8 +43,7 @@ namespace EasyEntity
             //    m.Properties(p => new {p.OverlyLongDescriptionField});
             //    m.ToTable("PersonDescription");
             //});
-
-            //TODO V2 normalize this out
+            
             modelBuilder.Entity<ProductOrder>()
                 .HasMany<Product>(p => p.Products)
                 .WithMany(po => po.ProductOrders)
@@ -54,7 +53,8 @@ namespace EasyEntity
                         pop.MapRightKey("ProductId");
                         pop.ToTable("ProductOrder_Product_Mapping");
                     });
-
+            
+            //TODO V3 name table better
             //modelBuilder.Entity<Audit>()
             //.Map(m =>
             //{
