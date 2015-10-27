@@ -45,22 +45,22 @@ namespace EasyEntity
             //});
 
             //TODO V2 normalize this out
-            //modelBuilder.Entity<ProductOrder>()
-            //    .HasMany<Product>(p => p.Products)
-            //    .WithMany(po => po.ProductOrders)
-            //    .Map(pop =>
-            //        {
-            //            pop.MapLeftKey("ProductOrderId");
-            //            pop.MapRightKey("ProductId");
-            //            pop.ToTable("ProductOrder_Product_Mapping");
-            //        });
+            modelBuilder.Entity<ProductOrder>()
+                .HasMany<Product>(p => p.Products)
+                .WithMany(po => po.ProductOrders)
+                .Map(pop =>
+                    {
+                        pop.MapLeftKey("ProductOrderId");
+                        pop.MapRightKey("ProductId");
+                        pop.ToTable("ProductOrder_Product_Mapping");
+                    });
 
-            modelBuilder.Entity<Audit>()
-            .Map(m =>
-            {
-                m.Properties(p => new {p.AuditId, p.xmlBlob});
-                m.ToTable("AuditTable", "Audit");
-            });
+            //modelBuilder.Entity<Audit>()
+            //.Map(m =>
+            //{
+            //    m.Properties(p => new {p.AuditId, p.xmlBlob});
+            //    m.ToTable("AuditTable", "Audit");
+            //});
         }
     }
 }

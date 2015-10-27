@@ -13,9 +13,9 @@ namespace EasyEntity
         public string ProductName { get; set; }
         
         //TODO V1 for this one to one relationship
-        public int ProductOrderId { get; set; }
+        //public int ProductOrderId { get; set; }
 
         //TODO V2 normalize this out to a many to many for reuse.
-        //public virtual ICollection<ProductOrder> ProductOrders { get; set; }
+        public virtual ICollection<ProductOrder> ProductOrders { get; set; }
     }
 }

@@ -66,6 +66,25 @@ namespace CodeFirstTesting
             
             using (var context = new EasyContext())
             {
+                //var productOrders2 = context.ProductOrder.Include("Products").ToList();
+
+                //productOrders2.ForEach(x =>
+                //{
+                //    x.Products.ToList().ForEach(y =>
+                //    {
+                //        context.Product.Remove(y);
+                //    });
+                //});
+
+                //context.ProductOrder.RemoveRange(productOrders2);
+
+
+                //context.ProductOrder.ClearRange("ProductOrder");
+                //context.Product.ClearRange("Product");
+                //context.Person.ClearRange("Person");
+
+                //context.SaveChanges();
+
                 var productOrders = context.ProductOrder.Include("Products").ToList();
                 var persons = context.Person.ToList();
 

@@ -11,14 +11,15 @@ namespace EasyEntity.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
             ContextKey = "EasyEntity.EasyContext";
             var drop = new DropCreateDatabaseAlways<EasyContext>();
         }
 
-        protected override void Seed(EasyEntity.EasyContext context)
+        protected override void Seed(EasyContext context)
         {
             SeedingValues.SeedingWithoutDatabaseDrop(context);
-            
+
             base.Seed(context);
         }
     }

@@ -12,7 +12,7 @@ namespace EasyEntity
         public Person Person { get; set; }
         
         //TODO V1 one to one
-        [ForeignKey("ProductOrderId")]
+        //[ForeignKey("ProductOrderId")]
         public ICollection<Product> Products { get; set; }
 
         [Column(TypeName = "varchar")]

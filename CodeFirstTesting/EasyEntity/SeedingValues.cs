@@ -16,6 +16,16 @@ namespace EasyEntity
 
         public static void SeedingWithoutDatabaseDrop(EasyContext context)
         {
+            var productOrders = context.ProductOrder.Include("Products").ToList();
+
+            productOrders.ForEach(x =>
+            {
+                x.Products.ToList().ForEach(y =>
+                {
+                    context.Product.Remove(y);
+                });
+            });
+
             context.ProductOrder.ClearRange("ProductOrder");
             context.Product.ClearRange("Product");
             context.Person.ClearRange("Person");
@@ -45,9 +55,9 @@ namespace EasyEntity
                 new Product {ProductName = "Bike" },
 
                 //TODO V2 normalize this out for many to many relationship
-                new Product {ProductName = "Shirt"},
-                new Product {ProductName = "Pants"},
-                new Product {ProductName = "Shoes" },
+                //new Product {ProductName = "Shirt"},
+                //new Product {ProductName = "Pants"},
+                //new Product {ProductName = "Shoes" },
             };
 
             foreach (var product in products)
@@ -56,12 +66,12 @@ namespace EasyEntity
             IList<ProductOrder> productOrders = new List<ProductOrder>
             {
                 //TODO V1 inserts for one to one
-                new ProductOrder {Person = persons[0], ProductOrderName = "BrettOrders", Products = new List<Product> { products[0], products[1], products[2]} },
-                new ProductOrder {Person = persons[1], ProductOrderName = "NeilOrders", Products = new List<Product> { products[3], products[4], products[5], products[6] } }
+                //new ProductOrder {Person = persons[0], ProductOrderName = "BrettOrders", Products = new List<Product> { products[0], products[1], products[2]} },
+                //new ProductOrder {Person = persons[1], ProductOrderName = "NeilOrders", Products = new List<Product> { products[3], products[4], products[5], products[6] } }
 
                 //TODO V2 Inserts for many to many
-                //new ProductOrder { Person = persons[0], ProductOrderName = "BrettOrders", Products = new List<Product> { products[0], products[1], products[2]} },
-                //new ProductOrder { Person = persons[1], ProductOrderName = "NeilOrders", Products = new List<Product> { products[0], products[1], products[2], products[3] } }
+                new ProductOrder { Person = persons[0], ProductOrderName = "BrettOrders", Products = new List<Product> { products[0], products[1], products[2]} },
+                new ProductOrder { Person = persons[1], ProductOrderName = "NeilOrders", Products = new List<Product> { products[0], products[1], products[2], products[3] } }
             };
 
             foreach (var productOrder in productOrders)
