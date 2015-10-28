@@ -26,9 +26,10 @@ namespace EasyEntity
                 });
             });
 
-            context.ProductOrder.ClearRange("ProductOrder");
-            context.Product.ClearRange("Product");
-            context.Person.ClearRange("Person");
+            context.ProductOrder.ClearRange("dbo.ProductOrder");
+            context.Product.ClearRange("dbo.Product");
+            context.Person.ClearRange("dbo.Person");
+            //context.Backup.ClearRange("dbo.Audit");
 
             BaseSeed(context);
         }

@@ -41,22 +41,20 @@ namespace EasyEntity
                     pop.ToTable("ProductOrder_Product_Mapping");
                 });
 
-            //TODO V2 Let's normalize out a long descriptive field
+            //TODO V3 Let's normalize out a long descriptive field
             //modelBuilder.Entity<Person>()
             //.Map(m =>
             //{
-            //    m.Properties(p => new {p.FirstName, p.LastName});
+            //    m.Properties(p => new { p.FirstName, p.LastName });
             //    m.ToTable("Person");
             //})
             //.Map(m =>
             //{
-            //    m.Properties(p => new {p.OverlyLongDescriptionField});
+            //    m.Properties(p => new { p.OverlyLongDescriptionField });
             //    m.ToTable("PersonDescription");
             //});
-
-
-
-            //TODO V3 name table better
+            
+            //TODO V4 name table better
             //modelBuilder.Entity<Audit>()
             //.Map(m =>
             //{

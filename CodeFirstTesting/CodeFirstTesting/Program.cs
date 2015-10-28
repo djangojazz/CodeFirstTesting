@@ -62,8 +62,16 @@ namespace CodeFirstTesting
             First, open the package manager console from Tools → Library Package Manager → Package Manager Console and then 
             run "enable-migrations –EnableAutomaticMigration:$true" command 
             (make sure that the default project is the project where your context class is)
+
+            TO ENABLE ADD MIGRATION:
+            First, open the package manager console from Tools → Library Package Manager → Package Manager Console and then 
+            run "add-migration "First Easy schema"" or similar.
+
+            UPDATE DATABASE AFTER MIGRATION:
+            First, open the package manager console from Tools → Library Package Manager → Package Manager Console and then 
+            run "update-database -verbose".  The verbose switch will show the SQL Statements that run as well.
             */
-            
+
             using (var context = new EasyContext())
             {
                 //var productOrders2 = context.ProductOrder.Include("Products").ToList();
