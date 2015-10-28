@@ -35,7 +35,6 @@ namespace EasyEntity
 
         private static void BaseSeed(EasyContext context)
         {
-
             IList<Person> persons = new List<Person>
             {
                 new Person { FirstName = "Brett", LastName = "Morin", OverlyLongDescriptionField = "OMG Look I have a bunch of text denormalizing a table by putting a bunch of stuff only side related to the primary table." },

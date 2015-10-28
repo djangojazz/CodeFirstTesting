@@ -14,7 +14,7 @@ namespace EasyEntity
             using (var context = new EasyContext())
             {
                 dbSet.RemoveRange(dbSet);
-                context.Database.ExecuteSqlCommand($"DBCC CHECKIDENT('dbo.{tableName}', RESEED, 1)");
+                context.Database.ExecuteSqlCommand($"DBCC CHECKIDENT('dbo.{tableName}', RESEED, 0)");
             }
         }
     }

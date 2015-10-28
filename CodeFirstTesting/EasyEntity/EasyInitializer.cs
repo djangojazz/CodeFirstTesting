@@ -8,13 +8,8 @@ namespace EasyEntity
     {
         protected override void Seed(EasyContext context)
         {
-            SeedIt(context);
-        }
-
-        public void SeedIt(EasyContext context)
-        {
             SeedingValues.SeedingForDatabaseDrop(context);
-            
+
             base.Seed(context);
         }
     }
