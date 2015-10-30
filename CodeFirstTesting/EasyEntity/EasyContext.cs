@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EasyEntity
 {
@@ -15,7 +10,7 @@ namespace EasyEntity
             //Database.SetInitializer<EasyContext>(new CreateDatabaseIfNotExists<EasyContext>());
             //Database.SetInitializer<EasyContext>(new DropCreateDatabaseIfModelChanges<EasyContext>());
             //Database.SetInitializer<EasyContext>(new DropCreateDatabaseAlways<EasyContext>());
-            //Database.SetInitializer<EasyContext>(new EasyInitializer());   
+            //Database.SetInitializer<EasyContext>(new EasyInitializer());
 
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<EasyContext, Migrations.Configuration>("EasyEntity"));
         }
@@ -42,18 +37,18 @@ namespace EasyEntity
                 });
 
             //TODO V3 Let's normalize out a long descriptive field
-            //modelBuilder.Entity<Person>()
-            //.Map(m =>
-            //{
-            //    m.Properties(p => new { p.FirstName, p.LastName });
-            //    m.ToTable("Person");
-            //})
-            //.Map(m =>
-            //{
-            //    m.Properties(p => new { p.OverlyLongDescriptionField });
-            //    m.ToTable("PersonDescription");
-            //});
-            
+            modelBuilder.Entity<Person>()
+            .Map(m =>
+            {
+                m.Properties(p => new { p.FirstName, p.LastName });
+                m.ToTable("Person");
+            })
+            .Map(m =>
+            {
+                m.Properties(p => new { p.OverlyLongDescriptionField });
+                m.ToTable("PersonDescription");
+            });
+
             //TODO V4 name table better
             //modelBuilder.Entity<Audit>()
             //.Map(m =>

@@ -10,6 +10,7 @@ namespace EasyEntity
 {
     public class Person
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PersonId { get; set; }
         [Column(TypeName = "varchar")]
         [Required]
@@ -24,7 +25,7 @@ namespace EasyEntity
         public string OverlyLongDescriptionField { get; set; }
 
         //TODO V2: let's remove this field
-        [Column(TypeName = "bit")]
-        public bool PointlessFlag { get; set; }
+        //[Column(TypeName = "bit")]
+        //public bool PointlessFlag { get; set; }
     }
 }

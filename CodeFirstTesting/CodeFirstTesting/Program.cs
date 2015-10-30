@@ -74,47 +74,30 @@ namespace CodeFirstTesting
 
             using (var context = new EasyContext())
             {
-                //var productOrders2 = context.ProductOrder.Include("Products").ToList();
+                context.Person.ToList().ForEach(x => Console.WriteLine($"{x.PersonId} {x.FirstName} {x.OverlyLongDescriptionField}"));
 
-                //productOrders2.ForEach(x =>
-                //{
-                //    x.Products.ToList().ForEach(y =>
+                //var productOrders = context.ProductOrder.Include("Products").ToList();
+                //var persons = context.Person.ToList();
+
+                //persons.GroupJoin(productOrders,
+                //    p => p.PersonId,
+                //    o => o.Person.PersonId,
+                //    (p, g) => g
+                //        .Select(o => new { PersonId = p.PersonId, PersonName = p.FirstName + " " + p.LastName, Orders = o })
+                //        .DefaultIfEmpty(new { PersonId = p.PersonId, PersonName = p.FirstName + " " + p.LastName, Orders = new ProductOrder() })
+                //        )
+                //    .SelectMany(g => g)
+                //    .ToList()
+                //    .ForEach(item =>
                 //    {
-                //        context.Product.Remove(y);
+                //        Console.WriteLine($"{item.PersonId}: {item.PersonName}");
+
+                //        if (!(item?.Orders?.Products?.Count > 0))
+                //            return;
+
+                //        Console.WriteLine($"\t {item.Orders.ProductOrderId}: {item.Orders.ProductOrderName}");
+                //        item.Orders.Products.ToList().ForEach(x => Console.WriteLine($"\t\t{x.ProductId}: {x.ProductName}"));
                 //    });
-                //});
-
-                //context.ProductOrder.RemoveRange(productOrders2);
-
-
-                //context.ProductOrder.ClearRange("ProductOrder");
-                //context.Product.ClearRange("Product");
-                //context.Person.ClearRange("Person");
-
-                //context.SaveChanges();
-
-                var productOrders = context.ProductOrder.Include("Products").ToList();
-                var persons = context.Person.ToList();
-
-                persons.GroupJoin(productOrders,
-                    p => p.PersonId,
-                    o => o.Person.PersonId,
-                    (p, g) => g
-                        .Select(o => new { PersonId = p.PersonId, PersonName = p.FirstName + " " + p.LastName, Orders = o })
-                        .DefaultIfEmpty(new { PersonId = p.PersonId, PersonName = p.FirstName + " " + p.LastName, Orders = new ProductOrder() })
-                        )
-                    .SelectMany(g => g)
-                    .ToList()
-                    .ForEach(item =>
-                    {
-                        Console.WriteLine($"{item.PersonId}: {item.PersonName}");
-
-                        if (!(item?.Orders?.Products?.Count > 0))
-                            return;
-
-                        Console.WriteLine($"\t {item.Orders.ProductOrderId}: {item.Orders.ProductOrderName}");
-                        item.Orders.Products.ToList().ForEach(x => Console.WriteLine($"\t\t{x.ProductId}: {x.ProductName}"));
-                    });
 
                 Console.ReadLine();
             }

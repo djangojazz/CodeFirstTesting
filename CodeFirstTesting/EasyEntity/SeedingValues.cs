@@ -16,21 +16,29 @@ namespace EasyEntity
 
         public static void SeedingWithoutDatabaseDrop(EasyContext context)
         {
-            var productOrders = context.ProductOrder.Include("Products").ToList();
+            //var productOrders = context.ProductOrder.Include("Products").ToList();
 
-            productOrders.ForEach(x =>
-            {
-                x.Products.ToList().ForEach(y =>
-                {
-                    context.Product.Remove(y);
-                });
-            });
+            //productOrders.ForEach(x =>
+            //{
+            //    x.Products.ToList().ForEach(y =>
+            //    {
+            //        context.Product.Remove(y);
+            //    });
+            //});
 
-            context.ProductOrder.ClearRange("dbo.ProductOrder");
-            context.Product.ClearRange("dbo.Product");
-            context.Person.ClearRange("dbo.Person");
-            //context.Backup.ClearRange("dbo.Audit");
+            //context.ProductOrder.ClearRange();
+            //ClearingHelper.ResetIdentity("dbo.ProductOrder");
 
+            //context.Product.ClearRange();
+            //ClearingHelper.ResetIdentity("dbo.Product");
+
+            context.Person.ClearRange();
+            ClearingHelper.ResetIdentity("dbo.Person");
+            ClearingHelper.ResetIdentity("dbo.PersonDescription");
+
+            //context.Backup.ClearRange();
+            context.SaveChanges();
+            
             BaseSeed(context);
         }
 
@@ -47,25 +55,25 @@ namespace EasyEntity
             foreach (var person in persons)
                 context.Person.AddOrUpdate(person);
 
-            IList<Product> products = new List<Product>
-            {
-                new Product {ProductName = "Shirt"},
-                new Product {ProductName = "Pants"},
-                new Product {ProductName = "Shoes" },
-                new Product {ProductName = "Bike" },
-            };
+            //IList<Product> products = new List<Product>
+            //{
+            //    new Product {ProductName = "Shirt"},
+            //    new Product {ProductName = "Pants"},
+            //    new Product {ProductName = "Shoes" },
+            //    new Product {ProductName = "Bike" },
+            //};
 
-            foreach (var product in products)
-                context.Product.AddOrUpdate(product);
+            //foreach (var product in products)
+            //    context.Product.AddOrUpdate(product);
 
-            IList<ProductOrder> productOrders = new List<ProductOrder>
-            {
-                new ProductOrder { Person = persons[0], ProductOrderName = "BrettOrders", Products = new List<Product> { products[0], products[1], products[2]} },
-                new ProductOrder { Person = persons[1], ProductOrderName = "NeilOrders", Products = new List<Product> { products[0], products[1], products[2], products[3] } }
-            };
+            //IList<ProductOrder> productOrders = new List<ProductOrder>
+            //{
+            //    new ProductOrder { Person = persons[0], ProductOrderName = "BrettOrders", Products = new List<Product> { products[0], products[1], products[2]} },
+            //    new ProductOrder { Person = persons[1], ProductOrderName = "NeilOrders", Products = new List<Product> { products[0], products[1], products[2], products[3] } }
+            //};
 
-            foreach (var productOrder in productOrders)
-                context.ProductOrder.AddOrUpdate(productOrder);
+            //foreach (var productOrder in productOrders)
+            //    context.ProductOrder.AddOrUpdate(productOrder);
         }
     }
 }
