@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace EasyEntity
@@ -11,7 +12,6 @@ namespace EasyEntity
             //Database.SetInitializer<EasyContext>(new DropCreateDatabaseIfModelChanges<EasyContext>());
             //Database.SetInitializer<EasyContext>(new DropCreateDatabaseAlways<EasyContext>());
             //Database.SetInitializer<EasyContext>(new EasyInitializer());
-
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<EasyContext, Migrations.Configuration>("EasyEntity"));
         }
         
@@ -27,7 +27,7 @@ namespace EasyEntity
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
 
             modelBuilder.Entity<ProductOrder>()
-                .HasMany<Product>(p => p.Products)
+                .HasMany(p => p.Products)
                 .WithMany(po => po.ProductOrders)
                 .Map(pop =>
                 {
@@ -37,17 +37,19 @@ namespace EasyEntity
                 });
 
             //TODO V3 Let's normalize out a long descriptive field
-            modelBuilder.Entity<Person>()
-            .Map(m =>
-            {
-                m.Properties(p => new { p.FirstName, p.LastName });
-                m.ToTable("Person");
-            })
-            .Map(m =>
-            {
-                m.Properties(p => new { p.OverlyLongDescriptionField });
-                m.ToTable("PersonDescription");
-            });
+            //modelBuilder.Entity<Person>()
+            //.Map(m =>
+            //{
+            //    m.Properties(p => new { p.FirstName, p.LastName });
+            //    m.ToTable("Person");
+            //})
+            //.Map(m =>
+            //{
+            //    m.Properties(p => new { p.OverlyLongDescriptionField });
+            //    m.ToTable("PersonDescription");
+            //});
+
+            //.Property(p => p.PersonId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             //TODO V4 name table better
             //modelBuilder.Entity<Audit>()

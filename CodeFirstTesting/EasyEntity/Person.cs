@@ -12,13 +12,10 @@ namespace EasyEntity
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PersonId { get; set; }
-        [Column(TypeName = "varchar")]
-        [Required]
-        [MaxLength(32)]
+
+        [Column(TypeName = "varchar"), Required, MaxLength(32)]
         public string FirstName { get; set; }
-        [Column(TypeName = "varchar")]
-        [Required]
-        [MaxLength(32)]
+        [Column(TypeName = "varchar"), Required, MaxLength(32)]
         public string LastName { get; set; }
 
         [Column(TypeName = "varchar")]
