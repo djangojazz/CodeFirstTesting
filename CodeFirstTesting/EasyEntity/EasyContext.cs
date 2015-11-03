@@ -11,8 +11,8 @@ namespace EasyEntity
             //Database.SetInitializer<EasyContext>(new CreateDatabaseIfNotExists<EasyContext>());
             //Database.SetInitializer<EasyContext>(new DropCreateDatabaseIfModelChanges<EasyContext>());
             //Database.SetInitializer<EasyContext>(new DropCreateDatabaseAlways<EasyContext>());
-            //Database.SetInitializer<EasyContext>(new EasyInitializer());
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<EasyContext, Migrations.Configuration>("EasyEntity"));
+            Database.SetInitializer<EasyContext>(new EasyInitializer());
+            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<EasyContext, Migrations.Configuration>("EasyEntity"));
         }
         
         public DbSet<ProductOrder> ProductOrder { get; set; }
@@ -36,20 +36,19 @@ namespace EasyEntity
                     pop.ToTable("ProductOrder_Product_Mapping");
                 });
 
-            //TODO V3 Let's normalize out a long descriptive field
+            //TODO V3: Let's normalize out a long descriptive field.
+            //Asked question on Stack Overflow on this.  Amazing feature, I am ignorant of how to do seeding without a database drop first. 
             //modelBuilder.Entity<Person>()
             //.Map(m =>
             //{
-            //    m.Properties(p => new { p.FirstName, p.LastName });
+            //    m.Properties(p => new { p.PersonId, p.FirstName, p.LastName });
             //    m.ToTable("Person");
             //})
             //.Map(m =>
             //{
-            //    m.Properties(p => new { p.OverlyLongDescriptionField });
+            //    m.Properties(p => new { p.PersonId, p.OverlyLongDescriptionField });
             //    m.ToTable("PersonDescription");
             //});
-
-            //.Property(p => p.PersonId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             //TODO V4 name table better
             //modelBuilder.Entity<Audit>()

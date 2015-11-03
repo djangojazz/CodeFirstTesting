@@ -70,34 +70,39 @@ namespace CodeFirstTesting
             UPDATE DATABASE AFTER MIGRATION:
             First, open the package manager console from Tools → Library Package Manager → Package Manager Console and then 
             run "update-database -verbose".  The verbose switch will show the SQL Statements that run as well.
+
+            FORCE DATABASE FORCE:
+            
             */
 
             using (var context = new EasyContext())
             {
-                context.Person.ToList().ForEach(x => Console.WriteLine($"{x.PersonId} {x.FirstName} {x.OverlyLongDescriptionField}"));
+                //var people = context.Person.ToList();
+                
+                //people.ForEach(x => Console.WriteLine($"{x.PersonId} {x.FirstName} {x.OverlyLongDescriptionField}"));
 
-                //var productOrders = context.ProductOrder.Include("Products").ToList();
-                //var persons = context.Person.ToList();
+                var productOrders = context.ProductOrder.Include("Products").ToList();
+                var persons = context.Person.ToList();
 
-                //persons.GroupJoin(productOrders,
-                //    p => p.PersonId,
-                //    o => o.Person.PersonId,
-                //    (p, g) => g
-                //        .Select(o => new { PersonId = p.PersonId, PersonName = p.FirstName + " " + p.LastName, Orders = o })
-                //        .DefaultIfEmpty(new { PersonId = p.PersonId, PersonName = p.FirstName + " " + p.LastName, Orders = new ProductOrder() })
-                //        )
-                //    .SelectMany(g => g)
-                //    .ToList()
-                //    .ForEach(item =>
-                //    {
-                //        Console.WriteLine($"{item.PersonId}: {item.PersonName}");
+                persons.GroupJoin(productOrders,
+                    p => p.PersonId,
+                    o => o.Person.PersonId,
+                    (p, g) => g
+                        .Select(o => new { PersonId = p.PersonId, PersonName = p.FirstName + " " + p.LastName, Orders = o })
+                        .DefaultIfEmpty(new { PersonId = p.PersonId, PersonName = p.FirstName + " " + p.LastName, Orders = new ProductOrder() })
+                        )
+                    .SelectMany(g => g)
+                    .ToList()
+                    .ForEach(item =>
+                    {
+                        Console.WriteLine($"{item.PersonId}: {item.PersonName}");
 
-                //        if (!(item?.Orders?.Products?.Count > 0))
-                //            return;
+                        if (!(item?.Orders?.Products?.Count > 0))
+                            return;
 
-                //        Console.WriteLine($"\t {item.Orders.ProductOrderId}: {item.Orders.ProductOrderName}");
-                //        item.Orders.Products.ToList().ForEach(x => Console.WriteLine($"\t\t{x.ProductId}: {x.ProductName}"));
-                //    });
+                        Console.WriteLine($"\t {item.Orders.ProductOrderId}: {item.Orders.ProductOrderName}");
+                        item.Orders.Products.ToList().ForEach(x => Console.WriteLine($"\t\t{x.ProductId}: {x.ProductName}"));
+                    });
 
                 Console.ReadLine();
             }

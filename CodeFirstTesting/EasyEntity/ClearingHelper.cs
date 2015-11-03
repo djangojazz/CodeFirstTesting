@@ -24,5 +24,22 @@ namespace EasyEntity
                 context.Database.ExecuteSqlCommand($"DBCC CHECKIDENT('{tableName}', RESEED, 0)");
             }
         }
+
+        public static void DeleteTable(string tableName)
+        {
+            using (var context = new EasyContext())
+            {
+                context.Database.ExecuteSqlCommand($"DELETE {tableName}");
+            }
+        }
+
+        public static void DeleteTableAndResetIdentity(string tableName)
+        {
+            using (var context = new EasyContext())
+            {
+                context.Database.ExecuteSqlCommand($"DELETE {tableName}");
+                context.Database.ExecuteSqlCommand($"DBCC CHECKIDENT('{tableName}', RESEED, 0)");
+            }
+        }
     }
 }
