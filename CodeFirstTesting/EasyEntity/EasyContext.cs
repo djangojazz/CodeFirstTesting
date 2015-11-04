@@ -43,7 +43,7 @@ namespace EasyEntity
             //modelBuilder.Entity<Person>()
             //.Map(m =>
             //{
-            //    m.Properties(p => new { p.PersonId, p.FirstName, p.LastName });
+            //    m.Properties(p => new { p.PersonId, p.FirstName, p.LastName, p.PointlessFlag });
             //    m.ToTable("Person");
             //})
             //.Map(m =>

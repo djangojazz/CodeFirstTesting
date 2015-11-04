@@ -16,26 +16,31 @@ namespace EasyEntity
 
         public static void SeedingWithoutDatabaseDrop(EasyContext context)
         {
-            //var productOrders = context.ProductOrder.Include("Products").ToList();
+            //TODO V3: Do a more automated cleanup
+            var productOrders = context.ProductOrder.Include("Products").ToList();
 
-            //productOrders.ForEach(x =>
-            //{
-            //    x.Products.ToList().ForEach(y =>
-            //    {
-            //        context.Product.Remove(y);
-            //    });
-            //});
+            productOrders.ForEach(x =>
+            {
+                x.Products.ToList().ForEach(y =>
+                {
+                    context.Product.Remove(y);
+                });
+            });
 
-            //context.ProductOrder.ClearRange();
-            //ClearingHelper.ResetIdentity("dbo.ProductOrder");
+            context.ProductOrder.ClearRange();
+            ClearingHelper.ResetIdentity("dbo.ProductOrder");
 
-            //context.Product.ClearRange();
-            //ClearingHelper.ResetIdentity("dbo.Product");
+            context.Product.ClearRange();
+            ClearingHelper.ResetIdentity("dbo.Product");
 
-            //TODO V3: Do a manual clean up
             context.Person.ClearRange();
             ClearingHelper.ResetIdentity("dbo.Person");
+
+            //TODO V3: Do a manual clean up
+            //ClearingHelper.DeleteTable("dbo.ProductOrder_Product_Mapping");
             //ClearingHelper.DeleteTable("dbo.PersonDescription");
+            //ClearingHelper.DeleteTableAndResetIdentity("dbo.ProductOrder");
+            //ClearingHelper.DeleteTableAndResetIdentity("dbo.Product");
             //ClearingHelper.DeleteTableAndResetIdentity("dbo.Person");
 
             //ClearingHelper.ResetIdentity("dbo.Person");
