@@ -16,26 +16,25 @@ namespace EasyEntity
 
         public static void SeedingWithoutDatabaseDrop(EasyContext context)
         {
-            var productOrders = context.ProductOrder.Include("Products").ToList();
+            //var productOrders = context.ProductOrder.Include("Products").ToList();
 
-            productOrders.ForEach(x =>
-            {
-                x.Products.ToList().ForEach(y =>
-                {
-                    context.Product.Remove(y);
-                });
-            });
+            //productOrders.ForEach(x =>
+            //{
+            //    x.Products.ToList().ForEach(y =>
+            //    {
+            //        context.Product.Remove(y);
+            //    });
+            //});
 
-            context.ProductOrder.ClearRange();
-            ClearingHelper.ResetIdentity("dbo.ProductOrder");
+            //context.ProductOrder.ClearRange();
+            //ClearingHelper.ResetIdentity("dbo.ProductOrder");
 
-            context.Product.ClearRange();
-            ClearingHelper.ResetIdentity("dbo.Product");
-
-            context.Person.ClearRange();
-            ClearingHelper.ResetIdentity("dbo.Person");
+            //context.Product.ClearRange();
+            //ClearingHelper.ResetIdentity("dbo.Product");
 
             //TODO V3: Do a manual clean up
+            context.Person.ClearRange();
+            ClearingHelper.ResetIdentity("dbo.Person");
             //ClearingHelper.DeleteTable("dbo.PersonDescription");
             //ClearingHelper.DeleteTableAndResetIdentity("dbo.Person");
 

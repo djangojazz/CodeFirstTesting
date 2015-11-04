@@ -8,13 +8,15 @@ namespace EasyEntity
     {
         public EasyContext() : base("name=EasyEntity")
         {
+            //These should be set up now in the config files more on this here: https://msdn.microsoft.com/en-us/data/jj556606.aspx
             //Database.SetInitializer<EasyContext>(new CreateDatabaseIfNotExists<EasyContext>());
             //Database.SetInitializer<EasyContext>(new DropCreateDatabaseIfModelChanges<EasyContext>());
             //Database.SetInitializer<EasyContext>(new DropCreateDatabaseAlways<EasyContext>());
-            Database.SetInitializer<EasyContext>(new EasyInitializer());
+            //Database.SetInitializer<EasyContext>(new EasyInitializer());
+
             //Database.SetInitializer(new MigrateDatabaseToLatestVersion<EasyContext, Migrations.Configuration>("EasyEntity"));
         }
-        
+
         public DbSet<ProductOrder> ProductOrder { get; set; }
         public DbSet<Person> Person { get; set; }
         public DbSet<Product> Product { get; set; }
@@ -50,7 +52,7 @@ namespace EasyEntity
             //    m.ToTable("PersonDescription");
             //});
 
-            //TODO V4 name table better
+            //TODO V4: name table better
             //modelBuilder.Entity<Audit>()
             //.Map(m =>
             //{

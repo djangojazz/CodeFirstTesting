@@ -22,7 +22,7 @@ namespace EasyEntity
         public string OverlyLongDescriptionField { get; set; }
 
         //TODO V2: let's remove this field
-        //[Column(TypeName = "bit")]
-        //public bool PointlessFlag { get; set; }
+        [Column(TypeName = "bit")]
+        public bool PointlessFlag { get; set; }
     }
 }

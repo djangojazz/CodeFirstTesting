@@ -88,14 +88,14 @@ namespace CodeFirstTesting
                     p => p.PersonId,
                     o => o.Person.PersonId,
                     (p, g) => g
-                        .Select(o => new { PersonId = p.PersonId, PersonName = p.FirstName + " " + p.LastName, Orders = o })
-                        .DefaultIfEmpty(new { PersonId = p.PersonId, PersonName = p.FirstName + " " + p.LastName, Orders = new ProductOrder() })
+                        .Select(o => new { PersonId = p.PersonId, PersonName = p.FirstName + " " + p.LastName, p.OverlyLongDescriptionField, Orders = o })
+                        .DefaultIfEmpty(new { PersonId = p.PersonId, PersonName = p.FirstName + " " + p.LastName, p.OverlyLongDescriptionField, Orders = new ProductOrder() })
                         )
                     .SelectMany(g => g)
                     .ToList()
                     .ForEach(item =>
                     {
-                        Console.WriteLine($"{item.PersonId}: {item.PersonName}");
+                        Console.WriteLine($"{item.PersonId}: {item.PersonName}: {item.OverlyLongDescriptionField}");
 
                         if (!(item?.Orders?.Products?.Count > 0))
                             return;
