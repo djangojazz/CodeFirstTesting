@@ -43,11 +43,6 @@ namespace EasyEntity
             //ClearingHelper.DeleteTableAndResetIdentity("dbo.Product");
             //ClearingHelper.DeleteTableAndResetIdentity("dbo.Person");
 
-            //ClearingHelper.ResetIdentity("dbo.Person");
-
-            //context.Backup.ClearRange();
-            //context.SaveChanges();
-
             BaseSeed(context);
         }
 

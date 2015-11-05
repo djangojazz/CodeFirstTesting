@@ -43,7 +43,7 @@ namespace EasyEntity
             //modelBuilder.Entity<Person>()
             //.Map(m =>
             //{
-            //    m.Properties(p => new { p.PersonId, p.FirstName, p.LastName, p.PointlessFlag });
+            //    m.Properties(p => new { p.PersonId, p.FirstName, p.LastName });
             //    m.ToTable("Person");
             //})
             //.Map(m =>
@@ -56,7 +56,7 @@ namespace EasyEntity
             //modelBuilder.Entity<Audit>()
             //.Map(m =>
             //{
-            //    m.Properties(p => new {p.AuditId, p.xmlBlob});
+            //    m.Properties(p => new { p.AuditId, p.xmlBlob });
             //    m.ToTable("AuditTable", "Audit");
             //});
         }
