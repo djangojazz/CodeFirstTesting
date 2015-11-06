@@ -13,9 +13,13 @@ namespace EasyEntity
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PersonId { get; set; }
 
-        [Column(TypeName = "varchar"), Required, MaxLength(32)]
+        [Column(TypeName = "varchar"), Required, MaxLength(32)
+            //TODO V5: Add Indexes ,Index("IX_Person_FirstName_LastName", 1, IsUnique = tr)
+            ]
         public string FirstName { get; set; }
-        [Column(TypeName = "varchar"), Required, MaxLength(32)]
+        [Column(TypeName = "varchar"), Required, MaxLength(32)
+            //TODO V5: Add Indexes, Index("IX_Person_FirstName_LastName", 2, IsUnique = true)
+            ]
         public string LastName { get; set; }
 
         [Column(TypeName = "varchar")]
